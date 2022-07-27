@@ -7,5 +7,5 @@ import com.example.vsii.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
-
+	
 }
