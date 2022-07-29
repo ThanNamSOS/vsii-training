@@ -9,9 +9,7 @@ import com.example.vsii.entities.ClaimEntity;
 
 @Repository
 public interface ClaimRepository extends JpaRepository<ClaimEntity, Integer>{
-//	@Query("select c from claim c where c.applicationNumber = :app")
-//	ClaimModel findByApp(@Param("app") String param);
-//	
+
 	@Query(name = "SearchClaimByApp")
 	public ClaimEntity findByApplication(@Param("app") String app);
 	

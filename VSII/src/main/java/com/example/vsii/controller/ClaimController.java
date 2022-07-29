@@ -4,45 +4,42 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.vsii.constant.MessageConstant;
 import com.example.vsii.entities.ClaimEntity;
 import com.example.vsii.model.ClaimModel;
 import com.example.vsii.repository.ClaimRepository;
+import com.example.vsii.services.IService;
+import com.example.vsii.utils.MessageUtils;
 
 @Controller
 @RequestMapping("/claim")
 public class ClaimController {
 
 	@Autowired
-	private ClaimRepository claimRepository;
+	private IService serviceClaim;
 
+	@Autowired
+	private MessageConstant messageConstant;
+	
 	@PostMapping("/add")
-	public String addUser(@Valid @RequestBody ClaimModel model, BindingResult result) {
-		System.out.println(model.getApplicationNumber());
-		ClaimEntity ca = this.claimRepository.findByApplication(model.getApplicationNumber());
+	public MessageUtils addUser(@Valid @RequestBody ClaimModel model, BindingResult result, Model model2) {
+		ClaimEntity ca = this.serviceClaim.findByApp(model.getApplicationNumber());
 		if (result.hasErrors() == true) {
-			return "dữ liệu không hợp lệ";
+			model2.addAttribute("massage", "dữ liệu không hợp lệ");
+			return new MessageUtils(messageConstant.INVALID_ERRO,messageConstant.INVALID_ERRO_CODE);
 		}
 		if (ca != null) {
-			System.out.println(this.claimRepository.findByApplication(model.getApplicationNumber()).getId());
-			ClaimEntity claim = new ClaimEntity();
-			claim.setId(ca.getId());
-			claim.setApplicationNumber(model.getApplicationNumber());
-			claim.setPolicyNumber(model.getPolicyNumber());
-			claim.setDeleted(model.isDeleted());
-			claimRepository.save(claim);
-			return "Sửa thành công!";
+			serviceClaim.update(model);
+			return new MessageUtils(messageConstant.SUCCESSFUL_INSERT,messageConstant.SUCCESSFUL_CODE);
 		}
-		ClaimEntity claim = new ClaimEntity();
-		claim.setApplicationNumber(model.getApplicationNumber());
-		claim.setPolicyNumber(model.getPolicyNumber());
-		claim.setDeleted(model.isDeleted());
-		claimRepository.save(claim);
-		return "Thêm mới thành công!";
+		serviceClaim.insert(model);
+		return new MessageUtils(messageConstant.SUCCESSFUL_UPDATE,messageConstant.SUCCESSFUL_CODE);
 
 	}
 
