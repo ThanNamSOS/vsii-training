@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.vsii.Repository.ClaimRepository;
-import com.example.vsii.entity.ClaimEntity;
+import com.example.vsii.entities.ClaimEntity;
 import com.example.vsii.model.ClaimModel;
+import com.example.vsii.repository.ClaimRepository;
 
 @Controller
 @RequestMapping("/claim")

@@ -1,4 +1,4 @@
-package com.example.vsii.entity;
+package com.example.vsii.entities;
 
 import java.util.Date;
 
