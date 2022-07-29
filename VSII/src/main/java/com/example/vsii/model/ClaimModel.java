@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -16,15 +18,17 @@ public class ClaimModel {
 	
 	private int id;
 	
+	@Length(max = 1028)
 	@NotBlank(message = "* Không để chống mục này")
 	private String applicationNumber;
 	
+	@Length(max = 1028)
 	@NotBlank(message = "* Không để chống mục này")
 	private String policyNumber;
 	
 	
 	private boolean isDeleted;
 	
-	@JsonFormat(pattern="yyyy-MM-dd@HH:mm:ss.SSSZ", shape = JsonFormat.Shape.STRING)
+	@JsonFormat(pattern="dd-MM-yyyy@HH:mm:ss.SSSZ", shape = JsonFormat.Shape.STRING)
 	private Date createdDate;
 }

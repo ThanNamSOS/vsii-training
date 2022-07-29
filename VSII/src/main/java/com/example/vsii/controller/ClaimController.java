@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.vsii.constant.MessageConstant;
 import com.example.vsii.entities.ClaimEntity;
@@ -18,7 +19,7 @@ import com.example.vsii.model.ClaimModel;
 import com.example.vsii.services.IService;
 import com.example.vsii.utils.MessageUtils;
 
-@Controller
+@RestController
 @RequestMapping("/claim")
 public class ClaimController {
 

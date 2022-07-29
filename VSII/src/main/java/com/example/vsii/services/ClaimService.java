@@ -30,6 +30,7 @@ public class ClaimService implements IService{
 		claim.setApplicationNumber(model.getApplicationNumber());
 		claim.setPolicyNumber(model.getPolicyNumber());
 		claim.setDeleted(model.isDeleted());
+		claim.setCreatedDate(model.getCreatedDate());
 		claimRepository.save(claim);
 	}
 
@@ -39,6 +40,7 @@ public class ClaimService implements IService{
 		claim.setId(claimRepository.findByApplication(model.getApplicationNumber()).getId());
 		claim.setApplicationNumber(model.getApplicationNumber());
 		claim.setPolicyNumber(model.getPolicyNumber());
+		claim.setCreatedDate(model.getCreatedDate());
 		claim.setDeleted(model.isDeleted());
 		claimRepository.save(claim);
 	}
