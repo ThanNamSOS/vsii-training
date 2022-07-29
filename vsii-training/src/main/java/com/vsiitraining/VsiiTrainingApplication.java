@@ -1,14 +1,13 @@
-package com.example.vsii;
+package com.vsiitraining;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-public class VsiiApplication {
+public class VsiiTrainingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VsiiApplication.class, args);
+		SpringApplication.run(VsiiTrainingApplication.class, args);
 	}
-	
+
 }
