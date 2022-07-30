@@ -2,7 +2,10 @@ package com.example.vsii.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.AssertFalse;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -26,7 +29,7 @@ public class ClaimModel {
 	@NotBlank(message = "* Không để chống mục này")
 	private String policyNumber;
 	
-	
+	@NotNull
 	private boolean isDeleted;
 	
 	@JsonFormat(pattern="dd-MM-yyyy@HH:mm:ss.SSSZ", shape = JsonFormat.Shape.STRING)

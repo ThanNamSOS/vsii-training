@@ -15,10 +15,7 @@ public class ClaimService implements IService{
 
 	@Autowired
 	private ClaimRepository claimRepository;
-	
-	@Autowired
-	private MessageConstant messageConstant;
-	
+
 	@Override
 	public List<ClaimEntity> getAll() {
 		return claimRepository.findAll();

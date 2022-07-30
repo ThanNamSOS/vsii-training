@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.vsii.constant.MessageConstant;
@@ -30,11 +32,12 @@ public class ClaimController {
 	private MessageConstant message;
 
 	@PostMapping("/add")
-	public ResponseEntity<MessageUtils> addUser(@Valid @RequestBody ClaimModel model, BindingResult result,
-			Model model2) {
+	public ResponseEntity<MessageUtils> addUser(@Valid @RequestBody ClaimModel model, BindingResult result
+		
+			) {
 		ClaimEntity ca = this.serviceClaim.findByApp(model.getApplicationNumber());
+		System.out.println("-----addUser isDeleted----"+model.isDeleted());
 		if (result.hasErrors() == true) {
-			model2.addAttribute("massage", "dữ liệu không hợp lệ");
 			return ResponseEntity.status(HttpStatus.OK)
 					.body(new MessageUtils(message.INVALID_ERRO, message.INVALID_ERRO_CODE));
 		}
